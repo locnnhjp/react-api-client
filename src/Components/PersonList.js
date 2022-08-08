@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { useState} from "react";
+import { useState, useEffect } from "react";
 
 function PersonList() {
     const [personList, setPersonList] = useState([]);
@@ -49,12 +49,12 @@ function PersonList() {
                 </label>
                 <button onClick={() => handleSubmit()}>Add</button>
             </form>
-            {/* <hr />
+            <hr />
             <ul>
                 {personList.map((person) => (
                     <li>{person.name}</li>
                 ))}
-            </ul> */}
+            </ul>
         </div>
     );
 }
