@@ -17,15 +17,11 @@ function Users() {
             });
     }, [loading]);
 
-    const getUsers = () => {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                axios
-                    .get("http://localhost:3001/api/users")
-                    .then((res) => resolve(res))
-                    .catch((err) => reject(err));
-            }, 1000);
+    const getUsers = async () => {
+        await new Promise((resolve, reject) => {
+            setTimeout(resolve, 1000);
         });
+        return await axios.get("http://localhost:3001/api/users");
     };
 
     const handleCreate = () => {
