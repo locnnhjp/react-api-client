@@ -32,25 +32,23 @@ function Users() {
             });
     }, [loading]);
 
-    // const getUsers = () => {
-    //     return new Promise((resolve, reject) => {
-    //         setTimeout(() => {
-    //             axios
-    //                 .get("http://localhost:3001/api/users")
-    //                 .then((res) => resolve(res))
-    //                 .catch((err) => reject(err));
-    //         }, 1000);
-    //     });
-    // };
+    const getUsers = () => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                axios.get("http://localhost:3001/api/users");
+                // .then((res) => resolve(res))
+                // .catch((err) => reject(err));
+            }, 1000);
+        });
+    };
 
-    // const getArticles = () => {
-    //     return new Promise((resolve, reject) => {
-    //         axios
-    //             .get("http://localhost:3001/api/articles")
-    //             .then((res) => resolve(res))
-    //             .catch((err) => reject(err));
-    //     });
-    // };
+    const getArticles = () => {
+        return new Promise((resolve, reject) => {
+            axios.get("http://localhost:3001/api/articles");
+            // .then((res) => resolve(res))
+            // .catch((err) => reject(err));
+        });
+    };
 
     const handleCreate = () => {
         navigate("/user/add");
