@@ -37,8 +37,9 @@ export function ContactDetail() {
                 .put(
                     `https://my-json-server.typicode.com/codegym-vn/mock-api-contacts/contacts/${contactID}`
                 )
-                .then(() => {
+                .then((res) => {
                     alert("Updated!");
+                    navigate("/");
                 })
                 .catch((err) => console.log(err));
         } else {
@@ -46,12 +47,12 @@ export function ContactDetail() {
                 .post(
                     "https://my-json-server.typicode.com/codegym-vn/mock-api-contacts/contacts"
                 )
-                .then(() => {
+                .then((res) => {
                     alert("Added!");
+                    navigate("/");
                 })
                 .catch((err) => console.log(err));
         }
-        navigate("/");
     }
     return (
         <div>
