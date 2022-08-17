@@ -19,9 +19,13 @@ export function ContactDetail() {
                 })
                 .catch((err) => {
                     console.log(err);
+                })
+                .finally(() => {
+                    setLoading(false);
                 });
+        } else {
+            setLoading(false);
         }
-        setLoading(false);
     }, [loading]);
 
     function handleChange(e) {
@@ -34,25 +38,30 @@ export function ContactDetail() {
     function handleSubmit() {
         if (contactID) {
             axios
-                .put(
-                    `https://my-json-server.typicode.com/codegym-vn/mock-api-contacts/contacts/${contactID}`
+                .patch(
+                    `https://my-json-server.typicode.com/codegym-vn/mock-api-contacts/contacts/${contactID}`,
+                    contact
                 )
                 .then((res) => {
                     alert("Updated!");
-                    navigate("/");
                 })
                 .catch((err) => console.log(err));
         } else {
             axios
                 .post(
-                    "https://my-json-server.typicode.com/codegym-vn/mock-api-contacts/contacts"
+                    "https://my-json-server.typicode.com/codegym-vn/mock-api-contacts/contacts",
+                    contact
                 )
                 .then((res) => {
                     alert("Added!");
-                    navigate("/");
                 })
                 .catch((err) => console.log(err));
         }
+        navigate("/");
+    }
+
+    if (loading) {
+        return <div>Loading...</div>;
     }
     return (
         <div>
@@ -64,7 +73,7 @@ export function ContactDetail() {
                         type="text"
                         className="form-control"
                         name="name"
-                        value={contact.name}
+                        value={contact.name || ""}
                         onChange={handleChange}
                     />
                 </div>
@@ -74,7 +83,8 @@ export function ContactDetail() {
                         type="text"
                         className="form-control"
                         name="email"
-                        value={contact.email}
+                        value={contact.email || ""}
+                        onChange={handleChange}
                     />
                 </div>
                 <div className="form-group">
@@ -83,11 +93,16 @@ export function ContactDetail() {
                         type="text"
                         className="form-control"
                         name="phone"
-                        value={contact.phone}
+                        value={contact.phone || ""}
+                        onChange={handleChange}
                     />
                 </div>
 
-                <button className="btn btn-primary" onClick={handleSubmit}>
+                <button
+                    type="submit"
+                    className="btn btn-primary"
+                    onClick={handleSubmit}
+                >
                     {contactID ? "Save" : "Add"}
                 </button>
             </form>

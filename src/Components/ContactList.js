@@ -21,7 +21,7 @@ function ContactList() {
             .finally(() => {
                 setLoading(false);
             });
-    });
+    }, [loading]);
 
     function handleAdd() {
         navigate("/contact/add");
@@ -29,6 +29,11 @@ function ContactList() {
 
     function handleEdit(contactID) {
         navigate(`contact/${contactID}`);
+    }
+
+    function handleDelete() {
+        alert("Deleted!");
+        setLoading(true);
     }
 
     if (loading) {
@@ -64,7 +69,10 @@ function ContactList() {
                                 >
                                     Edit
                                 </button>
-                                <button className="btn btn-danger mx-2">
+                                <button
+                                    className="btn btn-danger mx-2"
+                                    onClick={handleDelete}
+                                >
                                     Delete
                                 </button>
                             </td>
